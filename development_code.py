@@ -1,12 +1,16 @@
-from Agents import GuardAgent,ClassificationAgent
+from Agents import (GuardAgent,ClassificationAgent,DetailsAgent,AgentProtocol)
 import os
-
+from typing import Dict
 def main():
     pass
 
 if __name__=="__main__":
     guard_agent=GuardAgent()
     classification_agent=ClassificationAgent()
+
+    agent_dict:Dict[str,AgentProtocol]={
+        "details_agent":DetailsAgent()
+    }
 
     messages=[]
     while True:
@@ -32,7 +36,11 @@ if __name__=="__main__":
         chosen_agent=classification_agent_response["memory"]["classification_decision"]
         print("Chosen Agent:",chosen_agent)
         input("\nPress Enter to continue...")
-        
+
+        agent=agent_dict[chosen_agent]
+        response=agent.get_response(messages)
+
+        messages.append(response)
         # Clear screen AFTER user has seen output and pressed Enter
         # os.system('cls' if os.name=='nt' else 'clear')
 

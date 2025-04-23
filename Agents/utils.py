@@ -8,7 +8,6 @@ def get_chatbot_response(client,messages,temperature=0):
     return response.content
 
 
-def get_embedding(client_model,model_name,user_prompt):
-    model=client_model(model_name)
+def get_embedding(model,user_prompt):
     embedding=model.encode(user_prompt)
-    return embedding
+    return embedding.tolist()

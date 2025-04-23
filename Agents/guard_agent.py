@@ -8,11 +8,11 @@ load_dotenv()
 
 class GuardAgent:
     def __init__(self):
-        self.model_name=os.getenv("MODEL_NAME")
-        print(self.model_name)
+        model_name=os.getenv("MODEL_NAME")
+        print(model_name)
         api_key=os.getenv("GROQ_API_KEY")
         print(api_key)
-        self.client=ChatGroq(api_key=api_key,model=self.model_name)
+        self.client=ChatGroq(api_key=api_key,model=model_name)
         
     def get_response(self,messages):
         messages=deepcopy(messages)
